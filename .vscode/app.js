@@ -5,11 +5,12 @@ const cancelButton = document.querySelector('#btn-clear');
 const addButton = document.querySelector('#btn-add');
 const expensesList = document.querySelector('#expenses-list');
 const totalExpensesOutput = document.querySelector('#total-expenses');
-//const alertInputControl = document.querySelector('ion-alert-controller');
+const nameInput = document.querySelector('#input-name');
 
 let myTotalExpenses = 0;
 
 const clear = () =>{
+    nameInput.value = '';
     reasonInput.value = '';
     amountInput.value = '';
 };
@@ -29,12 +30,16 @@ const inputAlert =() => {
 
 cancelButton.addEventListener('click', clear);
 
+
+
 //Add Expenses button event
 addButton.addEventListener('click', () => {   
+    
     const reasonEntered = reasonInput.value; 
+    const nameEntered = nameInput.value;
     const amountEntered = amountInput.value;
 
-    if(reasonEntered.trim().length <= 0 || amountEntered <= 0 || amountEntered.trim().length <= 0){
+    if(nameEntered.trim().length <= 0 || reasonEntered.trim().length <= 0 || amountEntered <= 0 || amountEntered.trim().length <= 0){
        alert("please input valid reason")
        inputAlert();
         return;
@@ -42,7 +47,7 @@ addButton.addEventListener('click', () => {
     //console.log(reasonEntered, amountEntered);
 
     const newExpenses = document.createElement('ion-item');
-    newExpenses.textContent = reasonEntered + ': P' + amountEntered;
+    newExpenses.textContent = nameEntered + ':' + reasonEntered + ': P' + amountEntered;
     expensesList.appendChild(newExpenses);
     
 
